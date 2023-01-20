@@ -6,44 +6,26 @@ using TMPro;
 
 public class Driver : MonoBehaviour
 {
-    [SerializeField] public float steerSpeed = 225f, moveSpeed = 25f, originalSpeed = 25f;
-    [SerializeField] public float slowSpeed, boostSpeed;
-    [SerializeField] public float gas, gasUsage = 10;
-    public float fullTank = 45f;
-    [SerializeField] public TextMeshProUGUI gasText, healthText, walletText, deliveryText, walletInfoText;
+ // Handles Gas  
+   
+    [SerializeField] public float gas, gasUsage = 10; // 
+    public float fullTank = 45f; // gas full tank
 
-    Collision collision;
-    MoneyManager moneyManager;
-
-    [SerializeField] Camera miniMapCam;
-
+    [Range(20f, 100f)] public float cameraSlider = 30f; // use later for player to set size of minimap
     
+    MoneyManager moneyManager; // connect to buying more gas
 
-  
-
- 
+    [SerializeField] Camera miniMapCam;    // zoom in out camera
    
     private void Start()
     {
-       collision= GetComponent<Collision>();
-        moneyManager= GetComponent<MoneyManager>();
-       
+      moneyManager= GetComponent<MoneyManager>();     
     }
     private void Update()
     {
-
-        Drive();      
-        UpdateText();
+        HandleGas();       
     }
-
-    private void UpdateText()
-    {
-        gasText.text = "You have " + gas + "L of gas ";
-        healthText.text = "Car Health: " + collision.carHealth;
-        walletText.text = "You have  " + moneyManager.wallet + "  DollaryDoos";
-    }
-
-    private void Drive()
+    private void HandleGas()
     {
         if((gas >= 0))
         {
@@ -57,26 +39,16 @@ public class Driver : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
-                if (miniMapCam.orthographicSize != 60)
+                if (miniMapCam.orthographicSize != 80)
                 {
-                    miniMapCam.orthographicSize = 60;
+                    miniMapCam.orthographicSize = 80;
                 }
                 else
                 {
-                    miniMapCam.orthographicSize = 20;
+                    miniMapCam.orthographicSize = 45;
                 }
 
-            }
-        //   if (Input.GetKeyDown(KeyCode.LeftShift)) { steerSpeed = steerSpeed * 2; }
-         //   if (Input.GetKeyUp(KeyCode.LeftShift)) { steerSpeed = steerSpeed/ 2; }
-        //   if (Input.GetKeyDown(KeyCode.Space) && moveSpeed == originalSpeed) { moveSpeed = moveSpeed / 2; }
-        //   if (Input.GetKeyUp(KeyCode.Space) && moveSpeed <= originalSpeed && moveSpeed != slowSpeed) { moveSpeed = originalSpeed; }
-         //   float steerAmount = Input.GetAxis("Horizontal") * steerSpeed * Time.deltaTime;
-        //   float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        //    transform.Rotate(0, 0, -steerAmount);
-        //   transform.Translate(0, moveAmount, 0);          
-           
-           
+            }  
             
         }
         else if (Input.GetAxis("Horizontal") >= Mathf.Epsilon || Input.GetAxis("Vertical") >= Mathf.Epsilon)

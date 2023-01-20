@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1165743693}
   - component: {fileID: 1165743715}
   - component: {fileID: 1165743716}
+  - component: {fileID: 8273343158144102073}
   m_Layer: 0
   m_Name: CarMan
   m_TagString: Player
@@ -188,11 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad21b96826a935949af69eb08a5050a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steerSpeed: 225
-  moveSpeed: 25
-  originalSpeed: 25
-  slowSpeed: 10
-  boostSpeed: 40
   gas: 45
   gasUsage: 0.5
   fullTank: 45
@@ -335,3 +331,15 @@ MonoBehaviour:
   maxSpeedDamaged: 10
   driftFactorBrake: 0.95
   arcadeMode: 0
+--- !u!114 &8273343158144102073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645631188990810849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f02e9bb8a8e3047af4699cb8117723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

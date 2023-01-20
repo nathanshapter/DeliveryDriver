@@ -10,9 +10,12 @@ public class MoneyManager : MonoBehaviour
     public float deliveryFail = 20;
 
     Driver driver;
+
+    HUDManager hud;
     private void Start()
     {
         driver= GetComponent<Driver>();
+        hud = GetComponent<HUDManager>();
     }
 
     public void addMoney(float amount)
@@ -26,17 +29,17 @@ public class MoneyManager : MonoBehaviour
 
         if (receivedTip && correctDelivery)
         {
-            driver.walletInfoText.text = "You received " + amount + "for the delivery and " + tipAmount + "for the tip";
+            hud.walletInfoText.text = "You received " + amount + "for the delivery and " + tipAmount + "for the tip";
         }
         else if (!correctDelivery)
         {
-            driver.walletInfoText.text = "You had this amount " + (amount + tipAmount) + " taken from you. And were fined " + deliveryFail;
+            hud.walletInfoText.text = "You had this amount " + (amount + tipAmount) + " taken from you. And were fined " + deliveryFail;
             wallet -= (amount + tipAmount + deliveryFail);
             deliveryFail *= 1.1f;
         }
         else
         {
-            driver.walletInfoText.text = "You received " + amount + "for picking up the delivery";
+            hud.walletInfoText.text = "You received " + amount + "for picking up the delivery";
         }
        
 

@@ -6,9 +6,7 @@ public class MiniMapIcons : MonoBehaviour
 {
     [SerializeField] public SpriteRenderer[] dillwynniaIcons, seventhAve, rueStJacques, northWest, easternLowlands
         ;
-    DeliveryManager deliveryManager;
- 
-   
+     
     public void ChangeIconColorDillwynnia()
     {
         

@@ -34,12 +34,15 @@ public class Collision : MonoBehaviour
     [SerializeField] Timer timer;
 
     TopDownCarController topDownCarController;
+
+    HUDManager hud;
     private void Start()
     {
         spriteRenderer= GetComponent<SpriteRenderer>();
         moneyManager = GetComponent<MoneyManager>();
         driver = GetComponent<Driver>();
         topDownCarController = GetComponent<TopDownCarController>();
+        hud = GetComponent<HUDManager>();
       
     }
     private void Update()
@@ -77,7 +80,7 @@ public class Collision : MonoBehaviour
             deliveryManager.StartDelivery();
          
             moneyManager.addMoney(standardPickUp);
-            driver.deliveryText.text = "Your Delivery to " + deliveryManager.deliverHere.name + " has begun";
+            hud.deliveryText.text = "Your Delivery to " + deliveryManager.deliverHere.name + " has begun";
        
         }
        
@@ -88,12 +91,12 @@ public class Collision : MonoBehaviour
             other.GetComponent<SpriteRenderer>().color = Color.red;
             
             packageAmount--;
-            driver.deliveryText.text = "Package delivered to" + other;
+            hud.deliveryText.text = "Package delivered to" + other;
             
             if(other.transform != deliveryManager.deliverHere.transform)
             {
                 moneyManager.correctDelivery = false;
-                driver.deliveryText.text = "Your delivery to" + deliveryManager.deliverHere.name + " was  NOT successful! ya dumbass";
+                hud.deliveryText.text = "Your delivery to" + deliveryManager.deliverHere.name + " was  NOT successful! ya dumbass";
                 moneyManager.addMoney(incorrectDelivery);
                 deliveryManager.deliverHere.GetComponent<SpriteRenderer>().color = Color.red;
                 timer.isInDelivery = false;
@@ -102,7 +105,7 @@ public class Collision : MonoBehaviour
             {
                 moneyManager.addMoney(Dillwynnia);
                
-                driver.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
+                hud.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
                 timer.isInDelivery = false;
 
             }
@@ -117,17 +120,13 @@ public class Collision : MonoBehaviour
 
             miniMapIcons.ResetAllSprites();
         }
-        if(other.tag == "Boost" && moneyManager.wallet >= boostPrice)
-        {
-            moneyManager.wallet -= boostPrice;
-            driver.moveSpeed = driver.boostSpeed;
-        }
+      
         if(other.tag == "Repair" && moneyManager.wallet >= repairPrice && carHealth <= originalCarHealth)
         {
             moneyManager.wallet -= repairPrice;
-            driver.moveSpeed = driver.originalSpeed;
+           
             carHealth = originalCarHealth;
-            print(driver.moveSpeed);
+        
 
         }
         if(other.tag == "Gas" && moneyManager.wallet >= 0)
@@ -147,7 +146,7 @@ public class Collision : MonoBehaviour
         {
             // open menu to buy cars
             print("sales man is not yet available!");
-            driver.deliveryText.text = "Car salesman is not yet open, come back at another time!";
+            hud.deliveryText.text = "Car salesman is not yet open, come back at another time!";
 
         }
 

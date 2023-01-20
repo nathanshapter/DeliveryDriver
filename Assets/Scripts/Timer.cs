@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour
     Driver driver;
     MiniMapIcons miniMapIcons;
     PackageSpawn packageSpawn;
+    HUDManager hud;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class Timer : MonoBehaviour
         driver = FindObjectOfType<Driver>();
         miniMapIcons= FindObjectOfType<MiniMapIcons>();
         packageSpawn= FindObjectOfType<PackageSpawn>();
+        hud = FindObjectOfType<HUDManager>();
     }
     private void Update()
     {
@@ -54,7 +56,7 @@ public class Timer : MonoBehaviour
             moneyManager.correctDelivery = false;
             moneyManager.receivedTip= false;
             collision.packageAmount--;
-            driver.deliveryText.text = "You ran out of time!";
+            hud.deliveryText.text = "You ran out of time!";
             moneyManager.addMoney(-10f);
             collision.hasPackage= false;
             packageSpawn.SpawnAPackage();
