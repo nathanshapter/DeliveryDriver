@@ -10,24 +10,23 @@ public class Timer : MonoBehaviour
 
     //timer logic
     public float fillFraction;
-    float timerValue;
+    public float timerValue, timerOriginalValue, timerTotalValue;
     public bool isInDelivery = false;
-    [SerializeField] float timeToCompleteDelivery = 30f;
+   
+
+    bool timerSet;
 
     //getter
-    MiniMapIcons miniMapIcons;
-    PackageSpawn packageSpawn;
+  
     HUDManager hud;
     [SerializeField] Collision collision;
-    MoneyManager moneyManager;
+
+    public float dillwynniaTimer, seventhTimer, jacquesTimer, nwTimer, EasternTimer;
+ 
 
     private void Start()
     {
         timerImage.enabled = false;
-       moneyManager =  FindObjectOfType<MoneyManager>();
-       
-        miniMapIcons= FindObjectOfType<MiniMapIcons>();
-        packageSpawn= FindObjectOfType<PackageSpawn>();
         hud = FindObjectOfType<HUDManager>();
     }
     private void Update()
@@ -40,14 +39,17 @@ public class Timer : MonoBehaviour
         }
     }
     private void UpdateTimer()
-    {        
+    {   
+        
         timerImage.enabled = true;
         if(timerValue > 0 && isInDelivery)
         {
+            if(!timerSet) { timerTotalValue= timerValue; timerSet = true; }
+            
             timerValue -= Time.deltaTime;
-            fillFraction = timerValue/ timeToCompleteDelivery;
+            fillFraction = timerValue/ timerTotalValue;
             timerImage.fillAmount= fillFraction;
-        }       
+        }
         
         if (timerValue <= 0 && collision.hasPackage)
         {
@@ -56,19 +58,17 @@ public class Timer : MonoBehaviour
             isInDelivery = false;
             
             collision.packageAmount--;
-            hud.deliveryText.text = "You ran out of time!";
-            
-            
-            
-            
-         
-         //   FindObjectOfType<DeliveryManager>().ResetAllSprites();
-            ResetTimer();
+            hud.deliveryText.text = "You ran out of time!";          
+             ResetTimer();
         }
     }
     void ResetTimer()
     {
-        timerValue = timeToCompleteDelivery;
+        
         fillFraction = 1;
+        timerValue = timerOriginalValue;
+        timerTotalValue = timerValue;
+        timerSet= false;
     }
+    
 }

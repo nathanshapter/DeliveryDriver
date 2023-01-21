@@ -17,7 +17,12 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] float dillwynniaPrime, seventhAvePrime, jacquesPrime, nWPrime, easternPrime;
     [SerializeField] MoneyManager moneyManager;
 
-    
+   [SerializeField] Timer timer;
+
+    private void Start()
+    {
+        
+    }
     public void StartDelivery()
     {
         if (collision.hasPackage != true || pickedUp != false)
@@ -45,28 +50,34 @@ public class DeliveryManager : MonoBehaviour
         {
             miniMapIcons.ChangeIconColorDillwynnia();
             moneyManager.addMoney(dillwynniaPrime);
+            timer.timerValue += timer.dillwynniaTimer;
+            
         }
       if (deliverHere.transform.parent.CompareTag("7thAve"))
         {            
             miniMapIcons.ChangeIconColor7th();
             moneyManager.addMoney(seventhAvePrime);
+            timer.timerValue += timer.seventhTimer;
+            
         }
         if (deliverHere.transform.parent.CompareTag("RueStJacques"))
         {
             miniMapIcons.ChangeIconColorRueJacques();
             moneyManager.addMoney(jacquesPrime);
+            timer.timerValue += timer.jacquesTimer;
         }
         if (deliverHere.transform.parent.CompareTag("NorthWest"))
         {
             miniMapIcons.ChangeIconColorNorthWest();
             moneyManager.addMoney(nWPrime);
+            timer.timerValue += timer.nwTimer;
 
         }
         if (deliverHere.transform.parent.CompareTag("EasternLowlands"))
         {
             miniMapIcons.ChangeIconColorEasternLowlands();
             moneyManager.addMoney(easternPrime);
-
+            timer.timerValue += timer.EasternTimer;
         }
 
     }

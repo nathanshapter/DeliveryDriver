@@ -8,17 +8,21 @@ public class PackageSpawn : MonoBehaviour
     [SerializeField] GameObject package;
     [SerializeField] Driver driver;
     //todo add vfx
+
+   
     
     private void Start()
     {
+       
         GetComponentsInChildren<PackageSpawn>();
-        SpawnAPackage();      
-         
+        SpawnAPackage();
+        
     }
 
     public void SpawnAPackage()
     {
         Instantiate(package, packageSpawn[Random.Range(0, packageSpawn.Length )]);
+       
     }
    
 }

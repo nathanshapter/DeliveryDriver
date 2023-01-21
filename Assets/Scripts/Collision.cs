@@ -34,11 +34,13 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     [SerializeField] PackageSpawn packageSpawn;
     [SerializeField] Timer timer;
     HUDManager hud;
+    ProgressionManager pm;
 
 
 
     private void Start()
     {
+        pm = FindObjectOfType<ProgressionManager>();
         spriteRenderer= GetComponent<SpriteRenderer>();
         moneyManager = GetComponent<MoneyManager>();
         driver = GetComponent<Driver>();       
@@ -116,6 +118,8 @@ public class Collision : MonoBehaviour // handles all collisions, and health
             moneyManager.addMoney(flatDelivery);
 
             hud.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
+            pm.packagesDelivered++;
+            pm.IncreaseLevel();
             timer.isInDelivery = false;
 
         }
@@ -141,6 +145,8 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         timer.isInDelivery = false;
         hasPackage = false;
         ResetColorOfSprite();
+        packageSpawn.SpawnAPackage();
+        miniMapIcons.ResetAllSprites();
         
     }
 
