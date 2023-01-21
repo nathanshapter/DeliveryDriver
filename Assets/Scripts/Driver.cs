@@ -6,9 +6,10 @@ using TMPro;
 
 public class Driver : MonoBehaviour
 {
- // Handles Gas  
-   
-    [SerializeField] public float gas, gasUsage = 10; // 
+    // Handles Gas  
+
+    [SerializeField] public float gas, gasUsage = 1, gasLeaking = 0.1f, gasOriginalUsage; 
+    
     public float fullTank = 45f; // gas full tank
 
     [Range(20f, 100f)] public float cameraSlider = 30f; // use later for player to set size of minimap

@@ -7,14 +7,13 @@ public class PackageSpawn : MonoBehaviour
     [SerializeField] Transform[] packageSpawn;
     [SerializeField] GameObject package;
     [SerializeField] Driver driver;
+    //todo add vfx
     
     private void Start()
     {
         GetComponentsInChildren<PackageSpawn>();
-        SpawnAPackage();
-        
+        SpawnAPackage();      
          
-
     }
 
     public void SpawnAPackage()

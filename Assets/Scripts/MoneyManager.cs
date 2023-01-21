@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
 {
-    [SerializeField] public float flatRate, wallet, gasPrice = 20;
+    [SerializeField] public float flatDeliveryRate, wallet, gasPrice = 20;
     public bool receivedTip;
     public bool correctDelivery = true;
     public float deliveryFail = 20;
 
-    Driver driver;
+   
 
     HUDManager hud;
     private void Start()
-    {
-        driver= GetComponent<Driver>();
+    {        
         hud = GetComponent<HUDManager>();
     }
 
@@ -22,9 +21,7 @@ public class MoneyManager : MonoBehaviour
     {
         wallet += amount;
         float tipAmount = Random.Range(amount / 100, amount * 1.5f);
-        if (receivedTip) { wallet += tipAmount; }
-        
-        
+        if (receivedTip) { wallet += tipAmount; }             
 
 
         if (receivedTip && correctDelivery)

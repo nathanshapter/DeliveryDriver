@@ -5,26 +5,27 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float timeToCompleteDelivery = 30f;
+    //timer UI
     [SerializeField] Image timerImage;
-    [SerializeField] Collision collision;
 
-    public bool isInDelivery = false;
-    float timerValue;
-
+    //timer logic
     public float fillFraction;
+    float timerValue;
+    public bool isInDelivery = false;
+    [SerializeField] float timeToCompleteDelivery = 30f;
 
-    MoneyManager moneyManager;
-    Driver driver;
+    //getter
     MiniMapIcons miniMapIcons;
     PackageSpawn packageSpawn;
     HUDManager hud;
+    [SerializeField] Collision collision;
+    MoneyManager moneyManager;
 
     private void Start()
     {
         timerImage.enabled = false;
        moneyManager =  FindObjectOfType<MoneyManager>();
-        driver = FindObjectOfType<Driver>();
+       
         miniMapIcons= FindObjectOfType<MiniMapIcons>();
         packageSpawn= FindObjectOfType<PackageSpawn>();
         hud = FindObjectOfType<HUDManager>();
@@ -50,20 +51,18 @@ public class Timer : MonoBehaviour
         
         if (timerValue <= 0 && collision.hasPackage)
         {
-
+            collision.FailedDelivery();
             
             isInDelivery = false;
-            moneyManager.correctDelivery = false;
-            moneyManager.receivedTip= false;
+            
             collision.packageAmount--;
             hud.deliveryText.text = "You ran out of time!";
-            moneyManager.addMoney(-10f);
-            collision.hasPackage= false;
-            packageSpawn.SpawnAPackage();
-
-            miniMapIcons.ResetAllSprites();
-            collision.ResetColorOfSprite();
-            FindObjectOfType<DeliveryManager>().ResetAllSprites();
+            
+            
+            
+            
+         
+         //   FindObjectOfType<DeliveryManager>().ResetAllSprites();
             ResetTimer();
         }
     }
