@@ -66,7 +66,8 @@ public class Leaderboard : MonoBehaviour
     }
     public int ReturnLeaderBoardID() // needs to eventually root into all leaderboard ID's and all true/false statements
     {
-        if(am.DillwynniaFiveInProgress == true) { return dillwynniaFiveLeaderBoardID; }
+        if(am.dillwynniaFiveInProgress == true) { return dillwynniaFiveLeaderBoardID; }
+        if(am.dillwynniaTenInProgress == true) { return dillwynniaTenLeaderBoardID; }
         else { return allTimeLeaderBoardID; }
     }
 }

@@ -38,10 +38,10 @@ public class HighscoreManager : MonoBehaviour
             }
             if (!leaderboardCanvas) { leaderboardCanvas.SetActive(true); }
 
-
         }
     }
 
+    [System.Obsolete]
     IEnumerator SetupRoutine()
     {
         yield return LoginRoutine();
