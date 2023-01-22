@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MoneyManager : MonoBehaviour
 {
     [SerializeField] public float flatDeliveryRate, wallet, gasPrice = 20;
@@ -9,11 +10,17 @@ public class MoneyManager : MonoBehaviour
     public bool correctDelivery = true;
     public float deliveryFail = 20;
 
+    //to remove just for following
+
+    public Leaderboard leaderboard;
+
+    ScoreManager scoreManager;
    
 
     HUDManager hud;
     private void Start()
     {        
+        scoreManager = FindObjectOfType<ScoreManager>();
         hud = GetComponent<HUDManager>();
     }
 
@@ -38,8 +45,8 @@ public class MoneyManager : MonoBehaviour
         {
             hud.walletInfoText.text = "You received " + amount + "for picking up the delivery";
         }
-       
-
-        
+       // float newFloat = System.Convert.ToInt32(scoreManager.scoreAddition);
+       // wallet+= newFloat;
     }
+    
 }

@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
 
     //timer logic
     public float fillFraction;
-    public float timerValue, timerOriginalValue, timerTotalValue;
+    public float timerValue, timerOriginalValue, timerTotalValue, timerRemainingValue;
     public bool isInDelivery = false;
    
 
@@ -49,6 +49,8 @@ public class Timer : MonoBehaviour
             timerValue -= Time.deltaTime;
             fillFraction = timerValue/ timerTotalValue;
             timerImage.fillAmount= fillFraction;
+            timerRemainingValue = 100 * (timerValue / timerTotalValue);
+          
         }
         
         if (timerValue <= 0 && collision.hasPackage)

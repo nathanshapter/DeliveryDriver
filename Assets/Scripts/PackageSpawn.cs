@@ -9,20 +9,23 @@ public class PackageSpawn : MonoBehaviour
     [SerializeField] Driver driver;
     //todo add vfx
 
-   
+    public bool packageSpawned;
     
     private void Start()
     {
-       
+       packageSpawned= false;
         GetComponentsInChildren<PackageSpawn>();
         SpawnAPackage();
-        
+       
     }
 
     public void SpawnAPackage()
     {
-        Instantiate(package, packageSpawn[Random.Range(0, packageSpawn.Length )]);
-       
+        if(!packageSpawned) { Instantiate(package, packageSpawn[Random.Range(0, packageSpawn.Length)]); }
+        
+
+        packageSpawned= true;
+
     }
    
 }

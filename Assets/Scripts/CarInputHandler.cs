@@ -6,11 +6,15 @@ public class CarInputHandler : MonoBehaviour
 {
     //Components
     TopDownCarController topDownCarController;
+    VFX vfx;
+
+    
 
     //Awake is called when the script instance is being loaded.
     void Awake()
     {
         topDownCarController = GetComponent<TopDownCarController>();
+        vfx = GetComponent<VFX>();
     }
 
     // Start is called before the first frame update
@@ -39,7 +43,16 @@ public class CarInputHandler : MonoBehaviour
         inputVector.x = Input.GetAxis("Horizontal");
         inputVector.y = Input.GetAxis("Vertical");
 
+        if(inputVector.x != 0 || inputVector.y != 0)
+        {
+            vfx.smokeTrail.Play();
+        }
+        else { vfx.smokeTrail.Stop();}
+
         //Send the input to the car controller.
         topDownCarController.SetInputVector(inputVector);
+
+
+     
     }
 }

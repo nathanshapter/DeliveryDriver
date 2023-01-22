@@ -19,10 +19,7 @@ public class DeliveryManager : MonoBehaviour
 
    [SerializeField] Timer timer;
 
-    private void Start()
-    {
-        
-    }
+  
     public void StartDelivery()
     {
         if (collision.hasPackage != true || pickedUp != false)

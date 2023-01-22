@@ -14,11 +14,11 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     public bool hasPackage;
     [SerializeField] float destroyDelay;
     SpriteRenderer spriteRenderer;
-    [SerializeField] public int packageAmount;
+    [SerializeField] public int packageAmount, packagesDelivered;
 
     // moneymanager
     [SerializeField] float flatDelivery = 6.5f, standardPickUp = 5f;
-    [SerializeField] float incorrectDelivery = -10f;
+    [SerializeField] float incorrectDeliveryFlatFine = -10f;
     [SerializeField] float carUpgradePrice;
     int repairPrice = 50;
 
@@ -35,17 +35,25 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     [SerializeField] Timer timer;
     HUDManager hud;
     ProgressionManager pm;
+    ScoreManager sm;
+    ArcadeMode am;
 
 
+
+    // score amount for picking delivery
+    int scoreTest = 100;
 
     private void Start()
     {
+        sm = FindObjectOfType<ScoreManager>();
         pm = FindObjectOfType<ProgressionManager>();
         spriteRenderer= GetComponent<SpriteRenderer>();
         moneyManager = GetComponent<MoneyManager>();
         driver = GetComponent<Driver>();       
-        hud = GetComponent<HUDManager>();      
+        hud = GetComponent<HUDManager>();     
+        am = FindObjectOfType<ArcadeMode>();
     }
+    
     private void ProcessGasLeak()
     {
         if (carHealth >= 0)
@@ -115,12 +123,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         }
         else
         {
-            moneyManager.addMoney(flatDelivery);
-
-            hud.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
-            pm.packagesDelivered++;
-            pm.IncreaseLevel();
-            timer.isInDelivery = false;
+            SuccessfulDelivery();
 
         }
         if (packageAmount == 0)
@@ -133,6 +136,26 @@ public class Collision : MonoBehaviour // handles all collisions, and health
 
 
         miniMapIcons.ResetAllSprites();
+        
+    }
+
+    private void SuccessfulDelivery()
+    {
+        packagesDelivered++;
+        moneyManager.addMoney(flatDelivery);
+
+        hud.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
+        pm.packagesDelivered++;
+        pm.IncreaseLevel();
+        timer.isInDelivery = false;
+        packageSpawn.packageSpawned = false;
+        
+        int ScoreToPass = System.Convert.ToInt32(timer.timerRemainingValue);
+        sm.GetNumber(ScoreToPass);
+
+        am.GetDeliveriesAmount(packagesDelivered);
+        am.GetScore(ScoreToPass);
+        
     }
 
     public void FailedDelivery()
@@ -140,11 +163,13 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         moneyManager.correctDelivery = false;
         hud.deliveryText.text = "Your delivery to" + deliveryManager.deliverHere.name + " was  NOT successful! ya dumbass";
         moneyManager.receivedTip = false;
-        moneyManager.addMoney(incorrectDelivery);
+        moneyManager.addMoney(incorrectDeliveryFlatFine);
+        
         deliveryManager.deliverHere.GetComponent<SpriteRenderer>().color = Color.red;
         timer.isInDelivery = false;
         hasPackage = false;
         ResetColorOfSprite();
+        packageSpawn.packageSpawned = false;
         packageSpawn.SpawnAPackage();
         miniMapIcons.ResetAllSprites();
         
@@ -162,6 +187,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         deliveryManager.pickedUp = false;
         deliveryManager.StartDelivery();
         moneyManager.addMoney(standardPickUp);
+       
         hud.deliveryText.text = "Your Delivery to " + deliveryManager.deliverHere.name + " has begun";
     }
 
