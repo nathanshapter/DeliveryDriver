@@ -141,11 +141,12 @@ public class Collision : MonoBehaviour // handles all collisions, and health
 
     private void SuccessfulDelivery()
     {
-        packagesDelivered++;
+        if(am.inChallenge == false) { packagesDelivered++; pm.packagesDelivered++; }
+        
         moneyManager.addMoney(flatDelivery);
 
         hud.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
-        pm.packagesDelivered++;
+        
         pm.IncreaseLevel();
         timer.isInDelivery = false;
         packageSpawn.packageSpawned = false;

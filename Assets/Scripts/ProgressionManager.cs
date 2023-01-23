@@ -9,10 +9,12 @@ public class ProgressionManager : MonoBehaviour
     private bool fivePackages = false, twenty5Packages = false, fiftyPackages = false, hundredPackages = false, two50Packages = false;
 
     public int packagesDelivered;
+    ArcadeMode am;
 
     private void Start()
     {        
     hud = GetComponent<HUDManager>();
+        am = FindObjectOfType<ArcadeMode>();
         packagesDelivered= 0;
     }
 

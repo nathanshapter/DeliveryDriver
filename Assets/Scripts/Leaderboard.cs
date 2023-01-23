@@ -7,7 +7,7 @@ using TMPro;
 public class Leaderboard : MonoBehaviour
 {
     public TextMeshProUGUI playerNames, playerScores;
-    int dillwynniaFiveLeaderBoardID = 10799, dillwynniaTenLeaderBoardID = 10841, allTimeLeaderBoardID = 10842;
+    int dillwynniaFiveLeaderBoardID = 10799, dillwynniaTenLeaderBoardID = 10841, dillwynniaFifteenLeaderboardID = 10852, allTimeLeaderBoardID = 10842;
     [SerializeField] ArcadeMode am;
   public   IEnumerator SubmitScoreRoutine(int scoreToUpload)
     {
@@ -67,7 +67,8 @@ public class Leaderboard : MonoBehaviour
     public int ReturnLeaderBoardID() // needs to eventually root into all leaderboard ID's and all true/false statements
     {
         if(am.dillwynniaFiveInProgress == true) { return dillwynniaFiveLeaderBoardID; }
-        if(am.dillwynniaTenInProgress == true) { return dillwynniaTenLeaderBoardID; }
-        else { return allTimeLeaderBoardID; }
+        else if(am.dillwynniaTenInProgress == true) { return dillwynniaTenLeaderBoardID; }
+        else if(am.dillwynniaFifteenInProgress == true) { return dillwynniaFifteenLeaderboardID; }
+        else { return allTimeLeaderBoardID ; }
     }
 }

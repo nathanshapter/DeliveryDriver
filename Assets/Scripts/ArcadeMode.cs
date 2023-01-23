@@ -10,22 +10,40 @@ public class ArcadeMode : MonoBehaviour
      * enabled you to choose records to go against per street, and 5, 10, 15 deliveries
      */
 
-    Collision collision;
+    
     public int deliveries, score, deliveriesToTrack, scoreToTrack;
-   public bool dillwynniaFiveInProgress = false, dillwynniaTenInProgress = false;
+   public bool dillwynniaFiveInProgress = false, dillwynniaTenInProgress = false, dillwynniaFifteenInProgress; // bools for every street + 3 modes
+    private bool challengeMailBoxesSpawned = false;
+    public bool inChallenge = false;
+    [SerializeField] GameObject[] mailBoxes;
 
     private void Start()
-    {
-        collision= FindObjectOfType<Collision>();
-        dillwynniaTenInProgress = true;
+    {      
+        dillwynniaFiveInProgress = true; // temp set       
+        inChallenge = true;
+        
     }
    
-    public void CheckForChallenge()
+    public void CheckForChallenge() // this needs to be enabled via buttons to start them if the bool is true
     {
         RunDillwynniaFive();
         RunDillwynniaTen();
+        RunDillwynniaFifteen();
+        
     }
-
+    private void RunDillwynniaFifteen()
+    {
+        if(dillwynniaFifteenInProgress && deliveriesToTrack < 15)
+        {
+            ScoreAdd();
+        }
+        if (deliveriesToTrack >= 15 && dillwynniaFifteenInProgress)
+        {
+            ScoreOver();
+        }
+        else { }
+        EnableDillwynniaBoxes(); // needs to be added to a button command so that it despawns all other boxes before a delivery is made
+    }
     public void GetDeliveriesAmount(int amount) // this is total number of deliveries
     {
         
@@ -42,11 +60,13 @@ public class ArcadeMode : MonoBehaviour
         print(score);
         CheckForChallenge();
     }    
-  private void RunDillwynniaFive() // to add a timer to this and all others
+  private void RunDillwynniaFive() // to add a timer to this and all others // bools also need to lock delivery destinations
     {
-        if(dillwynniaFiveInProgress && deliveriesToTrack < 5)
+       
+        if (dillwynniaFiveInProgress && deliveriesToTrack < 5)
         {
             ScoreAdd();
+            
         }
         if (deliveriesToTrack >= 5 && dillwynniaFiveInProgress)
         {
@@ -55,27 +75,54 @@ public class ArcadeMode : MonoBehaviour
         }
         else
         {
-            ScoreFinish();
+            ;
+        }
+        EnableDillwynniaBoxes();
+        
+    }
+
+    private void EnableDillwynniaBoxes()
+    {
+        if (!challengeMailBoxesSpawned)
+        {
+            foreach (GameObject mailBox in mailBoxes) // this works
+            {
+                mailBox.SetActive(false); // to put somewhere better later
+                if (mailBox.transform.parent.CompareTag("Dillwynnia"))
+                {
+
+                    mailBox.SetActive(true);
+                }
+            }
+            challengeMailBoxesSpawned = true;
+            print("mailboxes spawned");
         }
     }
 
-    private void ScoreFinish()
+    public void ScoreFinish()
     {
-       // if there is no challenge, add to toal score
-        
+        // if there is no challenge, add to toal score
+        dillwynniaFiveInProgress = false;
+        dillwynniaTenInProgress = false;
+        dillwynniaFifteenInProgress = false;
     }
 
     private void ScoreOver()
     {
+        
         deliveriesToTrack = 0;
-        scoreToTrack = 0; score = 0;
-        dillwynniaFiveInProgress = false;
-        dillwynniaTenInProgress = false;
-        print("all bools reset");
+       
+       
+        inChallenge = false;
+        print("all bools abotu to reset");
+        challengeMailBoxesSpawned= false;
+
     }
 
     private void ScoreAdd()
     {
+        challengeMailBoxesSpawned = false;
+        inChallenge = true;
         deliveriesToTrack++;
         print(scoreToTrack);
         scoreToTrack += score;
@@ -94,9 +141,14 @@ public class ArcadeMode : MonoBehaviour
         {
             ScoreOver();
         }
-        else {ScoreFinish();}
+        else {}
+        EnableDillwynniaBoxes();
+
 
     }
+
+
+
 //  public bool ReturnCorrectBool { return DillwynniaFiveInProgress = true; }
 
  //  bool CheckBool(string str)

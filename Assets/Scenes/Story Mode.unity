@@ -6831,6 +6831,11 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6406708199517192030, guid: 5e7188288fad15045a48801d3440e9ef, type: 3}
   m_PrefabInstance: {fileID: 932346189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &365458289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2021463547, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+  m_PrefabInstance: {fileID: 120581623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &365747383
 GameObject:
   m_ObjectHideFlags: 0
@@ -16151,6 +16156,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &812224082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8518581087877518008, guid: 0d6e31f332f659142943edc43af009d4, type: 3}
+  m_PrefabInstance: {fileID: 659039052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &827723152
 GameObject:
   m_ObjectHideFlags: 0
@@ -116612,6 +116622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNames: {fileID: 1484666122}
   playerScores: {fileID: 365747384}
+  am: {fileID: 2119563779}
 --- !u!4 &1017019161
 Transform:
   m_ObjectHideFlags: 0
@@ -117567,6 +117578,11 @@ PrefabInstance:
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8518581088462282814, guid: 0d6e31f332f659142943edc43af009d4, type: 3}
   m_PrefabInstance: {fileID: 1541493549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1069279187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8518581087877518008, guid: 0d6e31f332f659142943edc43af009d4, type: 3}
+  m_PrefabInstance: {fileID: 6862614365007783032}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1069982694 stripped
 Transform:
@@ -118744,6 +118760,11 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6406708199517192030, guid: 5e7188288fad15045a48801d3440e9ef, type: 3}
   m_PrefabInstance: {fileID: 2015337127}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1127084432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2021463547, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+  m_PrefabInstance: {fileID: 2027612184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1134754011
 GameObject:
   m_ObjectHideFlags: 0
@@ -119544,6 +119565,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1180792737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6406708198893850072, guid: 5e7188288fad15045a48801d3440e9ef, type: 3}
+  m_PrefabInstance: {fileID: 163291725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1184694178
 GameObject:
   m_ObjectHideFlags: 0
@@ -120353,6 +120379,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1248671428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2021463547, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+  m_PrefabInstance: {fileID: 1460617825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1249624840
 GameObject:
   m_ObjectHideFlags: 0
@@ -132352,6 +132383,7 @@ MonoBehaviour:
   timerValue: 5
   timerOriginalValue: 5
   timerTotalValue: 0
+  timerRemainingValue: 0
   isInDelivery: 0
   collision: {fileID: 1165743701}
   dillwynniaTimer: 5
@@ -134942,6 +134974,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2104583040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6406708198893850072, guid: 5e7188288fad15045a48801d3440e9ef, type: 3}
+  m_PrefabInstance: {fileID: 2683042543489616947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2104691434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
@@ -135285,6 +135322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119563777}
   - component: {fileID: 2119563778}
+  - component: {fileID: 2119563779}
   m_Layer: 0
   m_Name: ArcadeManager
   m_TagString: Untagged
@@ -135323,6 +135361,61 @@ MonoBehaviour:
   leaderboard: {fileID: 1017019160}
   scoreAddition: 0
   score: 0
+--- !u!114 &2119563779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119563776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd09f77bd89b7943ad32fc7b2ac3c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deliveries: 0
+  score: 0
+  deliveriesToTrack: 0
+  scoreToTrack: 0
+  dillwynniaFiveInProgress: 0
+  dillwynniaTenInProgress: 0
+  dillwynniaFifteenInProgress: 0
+  inChallenge: 0
+  mailBoxes:
+  - {fileID: 1127084432}
+  - {fileID: 1069279187}
+  - {fileID: 2104583040}
+  - {fileID: 1248671428}
+  - {fileID: 365458289}
+  - {fileID: 812224082}
+  - {fileID: 1180792737}
+  - {fileID: 610111160}
+  - {fileID: 1429513159}
+  - {fileID: 855645775}
+  - {fileID: 1488244727}
+  - {fileID: 510819626}
+  - {fileID: 766093868}
+  - {fileID: 449292051}
+  - {fileID: 2147422104}
+  - {fileID: 972822150}
+  - {fileID: 1583097656}
+  - {fileID: 1236542049}
+  - {fileID: 1726587699}
+  - {fileID: 265126064}
+  - {fileID: 2136272590}
+  - {fileID: 1579248178}
+  - {fileID: 1958694353}
+  - {fileID: 1137251154}
+  - {fileID: 1593757337}
+  - {fileID: 955550499}
+  - {fileID: 452114359}
+  - {fileID: 1395412117}
+  - {fileID: 252616015}
+  - {fileID: 929343301}
+  - {fileID: 1390208003}
+  - {fileID: 922151125}
+  - {fileID: 1455984594}
+  - {fileID: 1908741638}
 --- !u!1 &2120869240
 GameObject:
   m_ObjectHideFlags: 0
