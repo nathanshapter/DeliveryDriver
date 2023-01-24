@@ -165,7 +165,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         hud.deliveryText.text = "Your delivery to" + deliveryManager.deliverHere.name + " was  NOT successful! ya dumbass";
         moneyManager.receivedTip = false;
         moneyManager.addMoney(incorrectDeliveryFlatFine);
-        
+        FindObjectOfType<ArcadeMode>().ScoreAdd();
         deliveryManager.deliverHere.GetComponent<SpriteRenderer>().color = Color.red;
         timer.isInDelivery = false;
         hasPackage = false;

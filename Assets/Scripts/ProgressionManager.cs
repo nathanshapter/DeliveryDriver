@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProgressionManager : MonoBehaviour
 {
-   [SerializeField] GameObject[] jacques, seventh, eastern, northwest;
+   [SerializeField] GameObject[] dillwynnia, jacques, seventh, eastern, northwest;
     HUDManager hud;
     private bool fivePackages = false, twenty5Packages = false, fiftyPackages = false, hundredPackages = false, two50Packages = false;
 
@@ -20,11 +20,13 @@ public class ProgressionManager : MonoBehaviour
 
     public void IncreaseLevel()
     {
+        
         if(packagesDelivered >= 5) { fivePackages= true; }
         if (packagesDelivered >= 25) { twenty5Packages = true; }
         if(packagesDelivered >= 50) { fiftyPackages= true; }
         if(packagesDelivered >= 100) { hundredPackages= true; }
         if(packagesDelivered >= 250) { two50Packages= true; }
+        print("called");
         SpawnMailboxes();
     }
     public void SpawnMailboxes()
@@ -62,7 +64,7 @@ public class ProgressionManager : MonoBehaviour
     }
     public void FivePackages()
     {
-
+        // celebration or some shit
     }
     public void TwentyFivePackages()
     {
