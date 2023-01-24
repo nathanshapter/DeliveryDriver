@@ -7,7 +7,7 @@ using TMPro;
 public class Leaderboard : MonoBehaviour
 {
     public TextMeshProUGUI playerNames, playerScores;
-    int dillwynniaFiveLeaderBoardID = 10799, dillwynniaTenLeaderBoardID = 10841, dillwynniaFifteenLeaderboardID = 10852, allTimeLeaderBoardID = 10842;
+    int dillwynniaFiveLeaderBoardID = 10799, dillwynniaTenLeaderBoardID = 10841, dillwynniaFifteenLeaderboardID = 10852, allTimeLeaderBoardID = 10842, jacquesFiveLeaderBoardID = 10970, jacquesTenLeaderBoardID = 10971, jacquesFifteenLeaderBoardID = 10972;
     [SerializeField] ArcadeMode am;
   public   IEnumerator SubmitScoreRoutine(int scoreToUpload)
     {
@@ -32,7 +32,7 @@ public class Leaderboard : MonoBehaviour
     public IEnumerator FetchTopHighScoresRoutine()
     {
         bool done = false;
-        LootLockerSDKManager.GetScoreListMain(dillwynniaFiveLeaderBoardID, 10, 0, (response) =>
+        LootLockerSDKManager.GetScoreListMain(jacquesFiveLeaderBoardID, 10, 0, (response) =>
         {
             if (response.success)
             {
@@ -66,9 +66,12 @@ public class Leaderboard : MonoBehaviour
     }
     public int ReturnLeaderBoardID() // needs to eventually root into all leaderboard ID's and all true/false statements
     {
-        if(am.dillwynniaFiveInProgress == true) { return dillwynniaFiveLeaderBoardID; }
-        else if(am.dillwynniaTenInProgress == true) { return dillwynniaTenLeaderBoardID; }
-        else if(am.dillwynniaFifteenInProgress == true) { return dillwynniaFifteenLeaderboardID; }
+        if (am.StreetButtonBool[0] == true) { return dillwynniaFiveLeaderBoardID; }
+        else if(am.StreetButtonBool[1] == true) { return dillwynniaTenLeaderBoardID; }
+        else if(am.StreetButtonBool[2] == true) { return dillwynniaFifteenLeaderboardID; }
+        else if (am.StreetButtonBool[3] == true) { return jacquesFiveLeaderBoardID; }
+        else if (am.StreetButtonBool[4] == true) { return jacquesTenLeaderBoardID; }
+        else if (am.StreetButtonBool[5] == true) { return jacquesFifteenLeaderBoardID; }
         else { return allTimeLeaderBoardID ; }
     }
 }
