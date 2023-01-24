@@ -119,7 +119,7 @@ public class ArcadeMode : MonoBehaviour
 
     }
 
-    private void ScoreAdd()
+    public void ScoreAdd()
     {
         challengeMailBoxesSpawned = false;
         inChallenge = true;
@@ -129,6 +129,7 @@ public class ArcadeMode : MonoBehaviour
         print(score);
         print("this is yoru score being tracked" + scoreToTrack);
         print("these are deliveries being tracked" + deliveriesToTrack);
+        score = 0;
     }
 
     private void RunDillwynniaTen()

@@ -55,6 +55,7 @@ public class Timer : MonoBehaviour
         
         if (timerValue <= 0 && collision.hasPackage)
         {
+            FindObjectOfType<ArcadeMode>().ScoreAdd(); ;
             collision.FailedDelivery();
             
             isInDelivery = false;
