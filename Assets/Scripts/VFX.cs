@@ -6,5 +6,6 @@ public class VFX : MonoBehaviour
 {
    public ParticleSystem smokeTrail;
     ////////////////////////////////////////////////////
+    ///.............
 
 }
