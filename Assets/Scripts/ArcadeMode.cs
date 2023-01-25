@@ -126,7 +126,8 @@ public class ArcadeMode : MonoBehaviour
         print("all bools abotu to reset");
         challengeMailBoxesSpawned= false;
 
-        AllStreetButtonsFalse();
+        StartCoroutine(AllStreetButtonsFalse());
+        
 
 
         leaderboardCanvas.enabled = true;
@@ -434,8 +435,9 @@ public class ArcadeMode : MonoBehaviour
         RunEastStreetTen();
         RunEastStreetFifteen();
     }
-    private void AllStreetButtonsFalse()
+    private IEnumerator AllStreetButtonsFalse()
     {
+        yield return new WaitForSeconds(3);
         StreetButtonBool[0] = false;
         StreetButtonBool[1] = false;
         StreetButtonBool[2] = false;

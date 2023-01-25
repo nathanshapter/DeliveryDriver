@@ -66,7 +66,7 @@ public class Leaderboard : MonoBehaviour
         yield return new WaitWhile(()=> done == false);
     }
     public int ReturnLeaderBoardID() // needs to eventually root into all leaderboard ID's and all true/false statements
-    {
+    { // these are being set to false before the last delviery is counted
         if (am.StreetButtonBool[0] == true) { return dillwynniaFiveLeaderBoardID; }
         else if(am.StreetButtonBool[1] == true) { return dillwynniaTenLeaderBoardID; }
         else if(am.StreetButtonBool[2] == true) { return dillwynniaFifteenLeaderboardID; }

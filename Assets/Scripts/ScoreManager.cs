@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
     
     IEnumerator addToScore()
     {
-        yield return new WaitForSeconds(3); // this is so am.scoreToTrack has correct amount of time to calculate before being sent to the server
+        yield return new WaitForSeconds(1); // this is so am.scoreToTrack has correct amount of time to calculate before being sent to the server
         yield return leaderboard.SubmitScoreRoutine(am.scoreToTrack);
         if (!am.inChallenge) {
             am.scoreToTrack = 0;
