@@ -7,8 +7,9 @@ using TMPro;
 public class Leaderboard : MonoBehaviour
 {
     public TextMeshProUGUI playerNames, playerScores;
-    int dillwynniaFiveLeaderBoardID = 10799, dillwynniaTenLeaderBoardID = 10841, dillwynniaFifteenLeaderboardID = 10852, allTimeLeaderBoardID = 10842, jacquesFiveLeaderBoardID = 10970, jacquesTenLeaderBoardID = 10971, jacquesFifteenLeaderBoardID = 10972;
+    int dillwynniaFiveLeaderBoardID = 10799, dillwynniaTenLeaderBoardID = 10841, dillwynniaFifteenLeaderboardID = 10852, allTimeLeaderBoardID = 10842, jacquesFiveLeaderBoardID = 10970, jacquesTenLeaderBoardID = 10971, jacquesFifteenLeaderBoardID = 10972, seventhFiveLeaderBoardID = 10984, seventhTenLeaderBoardID = 10985, SeventhFifteenLeaderBoardID = 10986, nwFiveLeaderBoardID = 10987, nwTenLeaderBoardID = 10988, nwFifteenLeaderBoardID = 10989, eastFiveLeaderBoardID = 10990, eastTenLeaderBoardID = 10991, eastFifteenLeaderBoardID = 10992;  
     [SerializeField] ArcadeMode am;
+  
   public   IEnumerator SubmitScoreRoutine(int scoreToUpload)
     {
         bool done = false;
@@ -72,6 +73,15 @@ public class Leaderboard : MonoBehaviour
         else if (am.StreetButtonBool[3] == true) { return jacquesFiveLeaderBoardID; }
         else if (am.StreetButtonBool[4] == true) { return jacquesTenLeaderBoardID; }
         else if (am.StreetButtonBool[5] == true) { return jacquesFifteenLeaderBoardID; }
+        else if (am.StreetButtonBool[6] == true) { return seventhFiveLeaderBoardID; }
+        else if (am.StreetButtonBool[7] == true) { return seventhTenLeaderBoardID; }
+        else if (am.StreetButtonBool[8] == true) { return SeventhFifteenLeaderBoardID; }
+        else if (am.StreetButtonBool[9] == true) { return nwFiveLeaderBoardID; }
+        else if (am.StreetButtonBool[10] == true) { return nwTenLeaderBoardID; }
+        else if (am.StreetButtonBool[11] == true) { return nwFifteenLeaderBoardID; }
+        else if (am.StreetButtonBool[12] == true) { return eastFiveLeaderBoardID; }
+        else if (am.StreetButtonBool[13] == true) { return eastTenLeaderBoardID; }
+        else if (am.StreetButtonBool[14] == true) { return eastFifteenLeaderBoardID; }
         else { return allTimeLeaderBoardID ; }
     }
 }

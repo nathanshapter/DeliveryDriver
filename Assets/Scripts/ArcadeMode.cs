@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
+
 
 public class ArcadeMode : MonoBehaviour
 {
@@ -14,11 +16,12 @@ public class ArcadeMode : MonoBehaviour
     
     public int deliveries, score, deliveriesToTrack, scoreToTrack;
    public bool[] StreetButtonBool = new bool[15]; // bools as an index
-    private bool challengeMailBoxesSpawned = false;
+    private bool challengeMailBoxesSpawned = false; // this to public maybe
     public bool inChallenge = false;
     [SerializeField] GameObject[] mailBoxes;
     Collision collision;
    [SerializeField] Canvas leaderboardCanvas;
+ [SerializeField]   bool allStreetButtonsFalse = true;
 
     public bool scoreJustAdded;
 
@@ -31,6 +34,7 @@ public class ArcadeMode : MonoBehaviour
 
     private void Start()
     {
+       
         collision = FindObjectOfType<Collision>();    
         
     }
@@ -39,6 +43,9 @@ public class ArcadeMode : MonoBehaviour
     {
         RunDillwynniaStreet();
         RunJacquesStreet();
+        Run7thStreet();
+        RunNWStreet();
+        RunEastStreet();
     }
     
     public void GetDeliveriesAmount(int amount) // this is total number of deliveries
@@ -60,17 +67,19 @@ public class ArcadeMode : MonoBehaviour
 
     private void EnableDillwynniaBoxes()
     {
-        if (!challengeMailBoxesSpawned)
+        if (!challengeMailBoxesSpawned && !collision.hasPackage )
         {
-            foreach (GameObject mailBox in mailBoxes) // this works
+            foreach (GameObject mailBox in mailBoxes) // this sometimes is called when its not supposed to be
             {
                 mailBox.SetActive(false); // to put somewhere better later
-                if (mailBox.transform.parent.CompareTag("Dillwynnia"))
+                if (mailBox.transform.parent.CompareTag("Dillwynnia") )
                 {
-
+                    
                     mailBox.SetActive(true);
                 }
+                
             }
+            allStreetButtonsFalse = false;
             challengeMailBoxesSpawned = true;
             print("mailboxes spawned");
         }
@@ -79,7 +88,7 @@ public class ArcadeMode : MonoBehaviour
    
     private void EnableJacquesBoxes()
     {
-        if (!challengeMailBoxesSpawned)
+        if (!challengeMailBoxesSpawned && !collision.hasPackage )
         {
             foreach (GameObject mailbox in mailBoxes)
             {
@@ -88,8 +97,8 @@ public class ArcadeMode : MonoBehaviour
                 {
                     mailbox.SetActive(true);
                 }
-
-              //  mailbox.SetActive(true);
+                allStreetButtonsFalse = false;
+                // 
             }
             challengeMailBoxesSpawned = true;
             
@@ -109,7 +118,7 @@ public class ArcadeMode : MonoBehaviour
 
     private void ScoreOver() // called when final delivery has been made
     {
-        
+        allStreetButtonsFalse = true;
         deliveriesToTrack = 0;
        
        
@@ -117,11 +126,14 @@ public class ArcadeMode : MonoBehaviour
         print("all bools abotu to reset");
         challengeMailBoxesSpawned= false;
 
-        FindObjectOfType<ProgressionManager>().IncreaseLevel(); // respawns despawned mailboxes
+        AllStreetButtonsFalse();
+
+
+        leaderboardCanvas.enabled = true;
 
     }
 
-    public void ScoreAdd()
+    public void ScoreAdd() 
     {
         if (scoreJustAdded) { return; }
         challengeMailBoxesSpawned = false;
@@ -148,38 +160,14 @@ public class ArcadeMode : MonoBehaviour
     }
     public void StreetButtonsOn(int index)
     {
-        StreetButtonBool[index] = true;
-        ChallengeButtonClicked();
+        if (allStreetButtonsFalse) {
+            StreetButtonBool[index] = true;
+            ChallengeButtonClicked();
+        }
+        
     }
 
-    //  public bool ReturnCorrectBool { return DillwynniaFiveInProgress = true; }
-
-    //  bool CheckBool(string str)
-    //  {
-
-    //  }
-    /*
-   public void TurnDillwynniaFiveOn()
-    {
-        dillwynniaFiveInProgress = true;
-        ChallengeButtonClicked();
-    }
-
-   
-
-    public void TurnDillwynniaTenOn()
-    {
-        dillwynniaTenInProgress = true;
-        ChallengeButtonClicked();
-    }
-    public void TurnDillwynniaFifteenOn()
-    {
-        dillwynniaFifteenInProgress = true;
-        ChallengeButtonClicked();
-    }
-    */
-
-
+ 
     private void RunDillwynniaFive() // to add a timer to this and all others // bools also need to lock delivery destinations
     {
 
@@ -191,7 +179,8 @@ public class ArcadeMode : MonoBehaviour
         if (deliveriesToTrack >= 5 && StreetButtonBool[0])
         {
             ScoreOver();
-
+            
+            
         }
         else
         {
@@ -208,14 +197,14 @@ public class ArcadeMode : MonoBehaviour
     }
     private void RunJacquesTen()
     {
-        if (StreetButtonBool[4] && deliveriesToTrack < 5) { ScoreAdd(); }
+        if (StreetButtonBool[4] && deliveriesToTrack < 10) { ScoreAdd(); }
         if (deliveriesToTrack >= 5 && StreetButtonBool[4]) { ScoreOver(); }
         EnableJacquesBoxes();
     }
     private void RunJacquesFifteen()
     {
-        if (StreetButtonBool[5] && deliveriesToTrack < 5) { ScoreAdd(); }
-        if (deliveriesToTrack >= 5 && StreetButtonBool[5]) { ScoreOver(); }
+        if (StreetButtonBool[5] && deliveriesToTrack < 15) { ScoreAdd(); }
+        if (deliveriesToTrack >= 15 && StreetButtonBool[5]) { ScoreOver(); }
         EnableJacquesBoxes();
     }
     private void RunDillwynniaTen()
@@ -246,7 +235,176 @@ public class ArcadeMode : MonoBehaviour
         else { }
         EnableDillwynniaBoxes(); // needs to be added to a button command so that it despawns all other boxes before a delivery is made
     }
-    private void RunJacquesStreet() 
+   
+    private void Run7thStreetFive()
+    {
+        if (StreetButtonBool[6] && deliveriesToTrack < 5)
+        {
+            ScoreAdd();
+
+        }
+        if (deliveriesToTrack >= 5 && StreetButtonBool[6])
+        {
+            ScoreOver();
+
+        }      
+        Enable7thBoxes();
+    }
+    private void Enable7thBoxes()
+    {
+        if (!challengeMailBoxesSpawned && !collision.hasPackage )
+        {
+            foreach (GameObject mailBox in mailBoxes) // this works
+            {
+                mailBox.SetActive(false); // to put somewhere better later
+                if (mailBox.transform.parent.CompareTag("7thAve"))
+                {
+
+                    mailBox.SetActive(true);
+                }
+                allStreetButtonsFalse = false;
+            }
+            challengeMailBoxesSpawned = true;
+            print("mailboxes 7spawned");
+        }
+    }
+    private void Run7thStreetTen()
+    {
+        if (StreetButtonBool[7] && deliveriesToTrack < 10)
+        {
+            ScoreAdd();
+
+        }
+        if (deliveriesToTrack >= 10 && StreetButtonBool[7])
+        {
+            ScoreOver();
+
+        }
+        Enable7thBoxes();
+    }
+    private void Run7thStreetFifteen()
+    {
+        if (StreetButtonBool[8] && deliveriesToTrack < 15)
+        {
+            ScoreAdd();
+
+        }
+        if (deliveriesToTrack >= 15 && StreetButtonBool[8])
+        {
+            ScoreOver();
+
+        }
+        Enable7thBoxes();
+    }
+    private void RunNWStreetFive()
+    {
+        if (StreetButtonBool[9] && deliveriesToTrack < 5)
+        {
+            ScoreAdd();
+        }
+        if(deliveriesToTrack >= 5 && StreetButtonBool[9])
+        {
+            ScoreOver();
+        }
+        EnableNWBoxes();
+    }
+    private void RunNWStreetTen()
+    {
+        if (StreetButtonBool[10] && deliveriesToTrack < 10)
+        {
+            ScoreAdd();
+        }
+        if (deliveriesToTrack >= 10 && StreetButtonBool[10])
+        {
+            ScoreOver();
+        }
+        EnableNWBoxes();
+    }
+    private void RunNWStreetFifteen()
+    {
+        if (StreetButtonBool[11] && deliveriesToTrack < 15)
+        {
+            ScoreAdd();
+        }
+        if (deliveriesToTrack >= 15 && StreetButtonBool[11])
+        {
+            ScoreOver();
+        }
+        EnableNWBoxes();
+    }
+    private void RunEastStreetFive()
+    {
+        if (StreetButtonBool[12] && deliveriesToTrack < 5)
+        {
+            ScoreAdd();
+        }
+        if (deliveriesToTrack >= 5 && StreetButtonBool[12])
+        {
+            ScoreOver();
+        }
+        EnableEastBoxes();
+    }
+    private void RunEastStreetTen()
+    {
+        if (StreetButtonBool[13] && deliveriesToTrack < 10)
+        {
+            ScoreAdd();
+        }
+        if (deliveriesToTrack >= 10 && StreetButtonBool[13])
+        {
+            ScoreOver();
+        }
+        EnableEastBoxes();
+    }
+    private void RunEastStreetFifteen()
+    {
+        if (StreetButtonBool[14] && deliveriesToTrack < 15)
+        {
+            ScoreAdd();
+        }
+        if (deliveriesToTrack >= 15 && StreetButtonBool[14])
+        {
+            ScoreOver();
+        }
+        EnableEastBoxes();
+    }
+    private void EnableNWBoxes()
+    {
+        if (!challengeMailBoxesSpawned && !collision.hasPackage )
+        {
+            foreach (GameObject mailBox in mailBoxes ) // this works
+            {
+                mailBox.SetActive(false); // to put somewhere better later
+                if (mailBox.transform.parent.CompareTag("NorthWest"))
+                {
+
+                    mailBox.SetActive(true);
+                }
+                allStreetButtonsFalse = false;
+            }
+            challengeMailBoxesSpawned = true;
+            print("mailboxes  NW spawned");
+        }
+    }
+    private void EnableEastBoxes()
+    {
+        if (!challengeMailBoxesSpawned && !collision.hasPackage  )
+        {
+            foreach (GameObject mailBox in mailBoxes) // this works
+            {
+                mailBox.SetActive(false); // to put somewhere better later
+                if (mailBox.transform.parent.CompareTag("EasternLowlands"))
+                {
+
+                    mailBox.SetActive(true);
+                }
+                allStreetButtonsFalse = false;
+            }
+            challengeMailBoxesSpawned = true;
+            print("mailboxes  EAST spawned");
+        }
+    }
+    private void RunJacquesStreet()
     {
         RunJacquesFive();
         RunJacquesTen();
@@ -258,4 +416,45 @@ public class ArcadeMode : MonoBehaviour
         RunDillwynniaTen();
         RunDillwynniaFifteen();
     }
+    private void Run7thStreet()
+    {
+        Run7thStreetFive();
+        Run7thStreetTen();
+        Run7thStreetFifteen();
+    }
+    private void RunNWStreet()
+    {
+        RunNWStreetFive();
+        RunNWStreetTen();
+        RunNWStreetFifteen();        
+    }
+    private void RunEastStreet()
+    {
+        RunEastStreetFive();
+        RunEastStreetTen();
+        RunEastStreetFifteen();
+    }
+    private void AllStreetButtonsFalse()
+    {
+        StreetButtonBool[0] = false;
+        StreetButtonBool[1] = false;
+        StreetButtonBool[2] = false;
+        StreetButtonBool[3] = false;
+        StreetButtonBool[4] = false;
+        StreetButtonBool[5] = false;
+        StreetButtonBool[6] = false;
+        StreetButtonBool[7] = false;
+        StreetButtonBool[8] = false;
+
+        StreetButtonBool[9] = false;
+        StreetButtonBool[10] = false;
+        StreetButtonBool[11] = false;
+        StreetButtonBool[12] = false;
+        StreetButtonBool[13] = false;
+        StreetButtonBool[14] = false;
+        
+
+    }
+  
 }
+

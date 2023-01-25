@@ -120,6 +120,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         if (other.transform != deliveryManager.deliverHere.transform)
         {
             FailedDelivery();
+
         }
         else
         {
@@ -161,6 +162,11 @@ public class Collision : MonoBehaviour // handles all collisions, and health
 
     public void FailedDelivery()
     {
+      //  if (am.inChallenge == false)
+        {
+            am.CheckForChallenge();
+        }
+        
         moneyManager.correctDelivery = false;
         hud.deliveryText.text = "Your delivery to" + deliveryManager.deliverHere.name + " was  NOT successful! ya dumbass";
         moneyManager.receivedTip = false;
