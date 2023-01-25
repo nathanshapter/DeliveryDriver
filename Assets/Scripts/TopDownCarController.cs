@@ -27,12 +27,15 @@ public class TopDownCarController : MonoBehaviour
 
     public bool arcadeMode = false;
 
+  
+
     //Components
     Rigidbody2D carRigidbody2D;
 
     //Awake is called when the script instance is being loaded.
     void Awake()
     {
+        
         carRigidbody2D = GetComponent<Rigidbody2D>();
         driver= GetComponent<Driver>();
     }
@@ -66,6 +69,7 @@ public class TopDownCarController : MonoBehaviour
 
     void ApplyEngineForce()
     {
+        
         //Apply drag if there is no accelerationInput so the car stops when the player lets go of the accelerator
         if (accelerationInput == 0)
             carRigidbody2D.drag = Mathf.Lerp(carRigidbody2D.drag, 3.0f, Time.fixedDeltaTime * 3);

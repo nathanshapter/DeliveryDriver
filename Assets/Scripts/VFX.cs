@@ -5,7 +5,7 @@ using UnityEngine;
 public class VFX : MonoBehaviour
 {
    public ParticleSystem smokeTrail;
-    ////////////////////////////////////////////////////
-    ///.............
+    //particle effects
+   public ParticleSystem crashEffect, smokeEffect, sparksEffect;
 
 }

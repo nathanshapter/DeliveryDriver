@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class Driver : MonoBehaviour
@@ -16,10 +17,13 @@ public class Driver : MonoBehaviour
     
     MoneyManager moneyManager; // connect to buying more gas
 
+
     [SerializeField] Camera miniMapCam;    // zoom in out camera
-   
+    [SerializeField] Image gasLiquid;
+    
     private void Start()
     {
+        
       moneyManager= GetComponent<MoneyManager>();     
     }
     private void Update()
@@ -32,6 +36,7 @@ public class Driver : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
             {
+                
                 gas -= gasUsage * Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
@@ -49,8 +54,8 @@ public class Driver : MonoBehaviour
                     miniMapCam.orthographicSize = 45;
                 }
 
-            }  
-            
+            }
+            gasLiquid.fillAmount = gas / fullTank;
         }
         else if (Input.GetAxis("Horizontal") >= Mathf.Epsilon || Input.GetAxis("Vertical") >= Mathf.Epsilon)
         {

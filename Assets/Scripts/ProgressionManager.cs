@@ -64,7 +64,7 @@ public class ProgressionManager : MonoBehaviour
     }
     public void FivePackages()
     {
-        // celebration or some shit
+        
     }
     public void TwentyFivePackages()
     {

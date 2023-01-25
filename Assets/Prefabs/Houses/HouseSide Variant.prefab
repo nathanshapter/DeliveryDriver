@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2139939058410046340, guid: 0d6e31f332f659142943edc43af009d4, type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseShape
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4220324879881616124, guid: 0d6e31f332f659142943edc43af009d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.19

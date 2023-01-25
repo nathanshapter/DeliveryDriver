@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collision : MonoBehaviour // handles all collisions, and health
 {
@@ -37,8 +38,12 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     ProgressionManager pm;
     ScoreManager sm;
     ArcadeMode am;
+    VFX vfx;
 
+   
 
+    // car health image
+    [SerializeField] Image healthFill;
 
     // score amount for picking delivery
     int scoreTest = 100;
@@ -52,10 +57,13 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         driver = GetComponent<Driver>();       
         hud = GetComponent<HUDManager>();     
         am = FindObjectOfType<ArcadeMode>();
+        vfx = GetComponent<VFX>();
+        
     }
-    
+   
     private void ProcessGasLeak()
     {
+        
         if (carHealth >= 0)
         {
             driver.gasUsage = driver.gasOriginalUsage;         
@@ -67,7 +75,13 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     {
         carCollisionDamage = Random.Range(0, 75);
         if(carHealth> 0) { carHealth -= carCollisionDamage; }
+        healthFill.fillAmount = (float)carHealth/(float)originalCarHealth;
+        
         ProcessGasLeak();
+        vfx.smokeEffect.Play();
+        vfx.crashEffect.Play();
+        vfx.sparksEffect.Play();
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -105,6 +119,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
             hud.deliveryText.text = "Car salesman is not yet open, come back at another time!";
 
         }
+      
 
     }
 

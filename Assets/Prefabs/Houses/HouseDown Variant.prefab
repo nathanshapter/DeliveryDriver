@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1474221472880655161, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+      propertyPath: m_DefaultVelocity.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1474221472880655161, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseShape
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021463547, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+      propertyPath: m_Name
+      value: 25 Dillwynnia Grove
+      objectReference: {fileID: 0}
     - target: {fileID: 2021463548, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -11.28
@@ -85,15 +97,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.74398
+      value: 65.47
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.308678
+      value: 3.32
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.3147864
+      value: 0.496408
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -101,15 +113,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5524103938256172764, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -129,3 +141,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+--- !u!1 &4220324880100995481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5524103938256172762, guid: 28eba0a004a3311429d5dd0770aa6ff1, type: 3}
+  m_PrefabInstance: {fileID: 8518581088278398787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-7752396926533931465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220324880100995481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd438dd108a0f284aa931a2da434f1d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 1
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 180
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_UseImpactDirection: 0
+  m_ScaleImpactWithMass: 0
+  m_ScaleImpactWithSpeed: 0

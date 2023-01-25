@@ -113,6 +113,30 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -7454,7 +7478,7 @@ TextureImporter:
         width: 88
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -7462,6 +7486,69 @@ TextureImporter:
       bones: []
       spriteID: 6e7aadfc73a85294f9d393681c2f1606
       internalID: -834335789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gas empty
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce05d267b48e26479d0d63bb9305d02
+      internalID: -155080434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gas gas
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 385
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c8d8fc3261cc14296f14a62f090243
+      internalID: 1489785492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fence
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 373
+        width: 18
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6aab7614a4411e4ea0470f2862f0b61
+      internalID: -1794563530
       vertices: []
       indices: 
       edges: []
@@ -7580,10 +7667,12 @@ TextureImporter:
       TILEMAP!_49: 709300997
       TILEMAP!_68: 631643337
       TILEMAP!_171: -1385398640
+      gas empty: -155080434
       TILEMAP!_23: -432485159
       TILEMAP!_112: 1715733209
       TILEMAP!_131: -1924553923
       TILEMAP!_132: -1565008093
+      Fence: -1794563530
       TILEMAP!_283: 351324515
       TILEMAP!_156: 1382341512
       Rock3: -994814981
@@ -7602,6 +7691,7 @@ TextureImporter:
       TILEMAP!_293: -441274724
       TILEMAP!_241: -889780782
       Parking Lot: 590333750
+      gas gas: 1489785492
       TILEMAP!_9: 1785253890
       Right Intersection: -312309893
       TILEMAP!_27: -536075325
