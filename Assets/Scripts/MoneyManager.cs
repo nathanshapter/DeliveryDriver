@@ -18,10 +18,12 @@ public class MoneyManager : MonoBehaviour
    
 
     HUDManager hud;
+    TextTest textTest;
     private void Start()
     {        
         am = FindObjectOfType<ArcadeMode>();
         hud = GetComponent<HUDManager>();
+        textTest = FindObjectOfType<TextTest>();
     }
 
     public void addMoney(float amount)
@@ -47,6 +49,7 @@ public class MoneyManager : MonoBehaviour
             {
                 hud.walletInfoText.text = "You received " + amount + "for picking up the delivery";
             }
+            textTest.GotMoney();
         }
        
        // float newFloat = System.Convert.ToInt32(scoreManager.scoreAddition);

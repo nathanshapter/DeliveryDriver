@@ -7,7 +7,7 @@ public class PackageSpawn : MonoBehaviour
     [SerializeField] Transform[] packageSpawn;
     [SerializeField] GameObject package;
     [SerializeField] Driver driver;
-    //todo add vfx
+    
 
     public bool packageSpawned;
     

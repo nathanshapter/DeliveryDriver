@@ -25,6 +25,6 @@ public class HUDManager : MonoBehaviour
     {
         gasText.text = "You have " + driver.gas + "L of gas ";
         healthText.text = "Car Health: " + collision.carHealth;
-        walletText.text = "You have  " + moneyManager.wallet + "  DollaryDoos";
+        walletText.text = "Money: " + moneyManager.wallet;
     }
 }
