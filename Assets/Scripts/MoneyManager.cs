@@ -14,37 +14,41 @@ public class MoneyManager : MonoBehaviour
 
     public Leaderboard leaderboard;
 
-    ScoreManager scoreManager;
+    ArcadeMode am;
    
 
     HUDManager hud;
     private void Start()
     {        
-        scoreManager = FindObjectOfType<ScoreManager>();
+        am = FindObjectOfType<ArcadeMode>();
         hud = GetComponent<HUDManager>();
     }
 
     public void addMoney(float amount)
     {
-        wallet += amount;
-        float tipAmount = Random.Range(amount / 100, amount * 1.5f);
-        if (receivedTip) { wallet += tipAmount; }             
+        if(am.allStreetButtonsFalse)
+        {
+            wallet += amount;
+            float tipAmount = Random.Range(amount / 100, amount * 1.5f);
+            if (receivedTip) { wallet += tipAmount; }
 
 
-        if (receivedTip && correctDelivery)
-        {
-            hud.walletInfoText.text = "You received " + amount + "for the delivery and " + tipAmount + "for the tip";
+            if (receivedTip && correctDelivery)
+            {
+                hud.walletInfoText.text = "You received " + amount + "for the delivery and " + tipAmount + "for the tip";
+            }
+            else if (!correctDelivery)
+            {
+                hud.walletInfoText.text = "You had this amount " + (amount + tipAmount) + " taken from you. And were fined " + deliveryFail;
+                wallet -= (amount + tipAmount + deliveryFail);
+                deliveryFail *= 1.1f;
+            }
+            else
+            {
+                hud.walletInfoText.text = "You received " + amount + "for picking up the delivery";
+            }
         }
-        else if (!correctDelivery)
-        {
-            hud.walletInfoText.text = "You had this amount " + (amount + tipAmount) + " taken from you. And were fined " + deliveryFail;
-            wallet -= (amount + tipAmount + deliveryFail);
-            deliveryFail *= 1.1f;
-        }
-        else
-        {
-            hud.walletInfoText.text = "You received " + amount + "for picking up the delivery";
-        }
+       
        // float newFloat = System.Convert.ToInt32(scoreManager.scoreAddition);
        // wallet+= newFloat;
     }

@@ -16,12 +16,12 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     [SerializeField] float destroyDelay;
     SpriteRenderer spriteRenderer;
     [SerializeField] public int packageAmount, packagesDelivered;
-
+    public float tempMoney;// this is for creating the amount made, sets to 0 for new delivery;
     // moneymanager
     [SerializeField] float flatDelivery = 6.5f, standardPickUp = 5f;
     [SerializeField] float incorrectDeliveryFlatFine = -10f;
     [SerializeField] float carUpgradePrice;
-    int repairPrice = 50;
+    int repairPrice = 5;
 
     // car health
     MoneyManager moneyManager;
@@ -69,13 +69,14 @@ public class Collision : MonoBehaviour // handles all collisions, and health
             driver.gasUsage = driver.gasOriginalUsage;         
         }
         else { driver.gasUsage = driver.gasLeaking; }
+        healthFill.fillAmount = (float)carHealth / (float)originalCarHealth;
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         carCollisionDamage = Random.Range(0, 75);
         if(carHealth> 0) { carHealth -= carCollisionDamage; }
-        healthFill.fillAmount = (float)carHealth/(float)originalCarHealth;
+        
         
         ProcessGasLeak();
         vfx.smokeEffect.Play();
@@ -160,7 +161,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         if(am.inChallenge == false) { packagesDelivered++; pm.packagesDelivered++; }
         
         moneyManager.addMoney(flatDelivery);
-
+        tempMoney = 0;
         hud.deliveryText.text = "Your delivery to " + deliveryManager.deliverHere.name + " was successful!";
         
         pm.IncreaseLevel();
@@ -185,7 +186,8 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         moneyManager.correctDelivery = false;
         hud.deliveryText.text = "Your delivery to" + deliveryManager.deliverHere.name + " was  NOT successful! ya dumbass";
         moneyManager.receivedTip = false;
-        moneyManager.addMoney(incorrectDeliveryFlatFine);
+        moneyManager.addMoney(incorrectDeliveryFlatFine + -(tempMoney));
+
         FindObjectOfType<ArcadeMode>().ScoreAdd();
         deliveryManager.deliverHere.GetComponent<SpriteRenderer>().color = Color.red;
         timer.isInDelivery = false;
@@ -194,7 +196,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         packageSpawn.packageSpawned = false;
         packageSpawn.SpawnAPackage();
         miniMapIcons.ResetAllSprites();
-        
+        tempMoney = 0;
     }
 
     private void ProcessPackageTag(Collider2D other)
@@ -209,6 +211,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         deliveryManager.pickedUp = false;
         deliveryManager.StartDelivery();
         moneyManager.addMoney(standardPickUp);
+        tempMoney += standardPickUp;
        
         hud.deliveryText.text = "Your Delivery to " + deliveryManager.deliverHere.name + " has begun";
     }

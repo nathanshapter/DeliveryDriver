@@ -47,6 +47,7 @@ public class DeliveryManager : MonoBehaviour
         {
             miniMapIcons.ChangeIconColorDillwynnia();
             moneyManager.addMoney(dillwynniaPrime);
+            collision.tempMoney += dillwynniaPrime;
             timer.timerValue += timer.dillwynniaTimer;
             
         }
@@ -54,6 +55,7 @@ public class DeliveryManager : MonoBehaviour
         {            
             miniMapIcons.ChangeIconColor7th();
             moneyManager.addMoney(seventhAvePrime);
+            collision.tempMoney += seventhAvePrime;
             timer.timerValue += timer.seventhTimer;
             
         }
@@ -61,12 +63,14 @@ public class DeliveryManager : MonoBehaviour
         {
             miniMapIcons.ChangeIconColorRueJacques();
             moneyManager.addMoney(jacquesPrime);
+            collision.tempMoney += jacquesPrime;
             timer.timerValue += timer.jacquesTimer;
         }
         if (deliverHere.transform.parent.CompareTag("NorthWest"))
         {
             miniMapIcons.ChangeIconColorNorthWest();
             moneyManager.addMoney(nWPrime);
+            collision.tempMoney += nWPrime;
             timer.timerValue += timer.nwTimer;
 
         }
@@ -74,6 +78,7 @@ public class DeliveryManager : MonoBehaviour
         {
             miniMapIcons.ChangeIconColorEasternLowlands();
             moneyManager.addMoney(easternPrime);
+            collision.tempMoney += easternPrime;
             timer.timerValue += timer.EasternTimer;
         }
 

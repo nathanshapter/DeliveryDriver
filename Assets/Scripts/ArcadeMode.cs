@@ -14,7 +14,7 @@ public class ArcadeMode : MonoBehaviour
     public bool[] StreetButtonBool = new bool[15]; // creates bools to set which challenge has been chosen
     private bool challengeMailBoxesSpawned = false; // set to true once mailboxes have spawned
     public bool inChallenge = false; // used to check if challenge has begun
-    [SerializeField] bool allStreetButtonsFalse = true; // used to check if anyother challenge has already started
+    [SerializeField] public bool allStreetButtonsFalse = true; // used to check if anyother challenge has already started
     public bool scoreJustAdded; // checks to see if score was just added to stop double delivery
     //getter
     Collision collision;
