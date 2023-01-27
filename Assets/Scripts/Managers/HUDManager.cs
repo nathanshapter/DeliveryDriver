@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+// script obsolete
 public class HUDManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI gasText, healthText, walletText, deliveryText, walletInfoText;

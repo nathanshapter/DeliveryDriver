@@ -39,6 +39,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
     ScoreManager sm;
     ArcadeMode am;
     VFX vfx;
+    TweenManager tweenManager;
 
    
 
@@ -58,7 +59,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         hud = GetComponent<HUDManager>();     
         am = FindObjectOfType<ArcadeMode>();
         vfx = GetComponent<VFX>();
-        
+        tweenManager = FindObjectOfType<TweenManager>();
     }
    
     private void ProcessGasLeak()
@@ -173,7 +174,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
 
         am.GetDeliveriesAmount(packagesDelivered);
         am.GetScore(ScoreToPass);
-        
+        tweenManager.DeliveryInfoTween(3);
     }
 
     public void FailedDelivery()
@@ -197,6 +198,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         packageSpawn.SpawnAPackage();
         miniMapIcons.ResetAllSprites();
         tempMoney = 0;
+        tweenManager.DeliveryInfoTween(2);
     }
 
     private void ProcessPackageTag(Collider2D other)
@@ -214,6 +216,7 @@ public class Collision : MonoBehaviour // handles all collisions, and health
         tempMoney += standardPickUp;
        
         hud.deliveryText.text = "Your Delivery to " + deliveryManager.deliverHere.name + " has begun";
+        tweenManager.DeliveryInfoTween(1);
     }
 
     public void ResetColorOfSprite() // returns car to original color
