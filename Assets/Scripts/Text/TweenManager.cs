@@ -11,7 +11,12 @@ public class TweenManager : MonoBehaviour
     // Start is called before the first frame update
 
    [SerializeField] TextMeshProUGUI moneyText, deliveryText;
-    [SerializeField] GameObject player;
+    [SerializeField] SpriteRenderer player;
+
+    public void PlayerGotPackageSprite(SpriteRenderer sprite)
+    {
+        sprite.color= Color.white;
+    }
     
     public void DeliveryInfoTween(float outcomeNumber)
     {
